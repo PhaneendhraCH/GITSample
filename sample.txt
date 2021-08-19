@@ -1,0 +1,196 @@
+Preprocessors in C:
+
+1. #include
+
+This can contain system defined and user defined header file
+These are used to paste code of a given file
+
+Example :
+
+#include<stdio.h>  
+ int main(){    
+   printf("Hello C");      
+   return 0;  
+} 
+
+2. #if   
+
+It is a preprocessor directive.
+Used to validate a conditional statement.
+
+Example : 
+
+#include <stdio.h>
+#define CODE 1
+
+int main(){
+
+#if (CODE)
+printf("HELLO THERE");
+
+#endif
+
+return 0;
+}
+
+
+
+3. #ifdef
+
+It is a preprocessor directive.
+Used to validate whether the directive is defined by the macro,i.e. #define
+
+#include <stdio.h>
+#define defined_here
+int main()
+{
+    #ifdef defined_here
+        printf("macro defined ");
+        
+    #elif
+    printf("Hello World");
+    
+    #endif
+    return 0;
+}
+
+4. #ifndef
+
+It is a preprocessor directive.
+It checks if macro is not defined by the #define.
+If it is defined it executes the code or else moves to else condition
+
+Example:
+
+#include <stdio.h>
+
+#define WINDOWS 1
+
+int main()
+{
+
+   #ifndef WINDOWS
+   printf("Macro is declared bt #define ");
+   
+   #else
+   printf("Macro is note  declared.\n");
+   
+   #endif
+    
+   return 0;
+}
+
+
+5. #define
+
+It is a preprocessor directive
+It is used to define a macro
+
+Example:
+
+#include <stdio.h>  
+#define PI 3.14  
+main() {  
+   printf("%f",PI);  
+}  
+
+
+6. #undef
+
+It is a preprocessor directive
+It is used to undefine the macro which is defined by #define.
+
+Example:
+
+#include <stdio.h>  
+#define PI 3.14  
+#undef PI  // here the macro PI will be undefined.
+main() {  
+   printf("%f",PI);  // Error: Variable PI was not declared. 
+} 
+
+
+7. #line
+
+It is a preprocessor directive
+It sets the line number given by the user and follows in a sequence manner.
+
+Example :
+
+#include <stdio.h>
+
+int main()
+{
+    printf( "This code is on line %d\n", __LINE__ );
+#line 10
+    printf( "This code is on line %d\n", __LINE__ );
+#line 100 
+    printf( "This code is on line %d\n", __LINE__ );
+    printf( "This code is on line %d\n", __LINE__ );
+}
+
+Output :
+
+This code is on line 10
+This code is on line 100
+This code is on line 101
+ 
+
+8. #pragma
+
+It is a preprocessor directive
+It is used to provide a special feature to the compiler.
+This might vary from one compiler to another.
+In GCC compiler startup and exit wont work, we'll be using constructor and destructor for that.
+
+Startup : Executes before main fucntion
+exit :Executes after main function
+
+Example :
+
+#include<stdio.h>
+int display();
+
+#pragma startup display
+#pragma exit display
+
+int main() {
+   printf("\nI am in main function");
+   return 0;
+}
+
+int display() {
+   printf("\nI am in display function");
+   return 0;
+}
+
+IN GCC Compilers:
+
+
+#include<stdio.h>
+
+int display();
+
+int __attribute__((constructor)) display(); 
+int __attribute__((destructor)) display(); 
+
+int main() {
+   printf("\nI am in main function");
+   return 0;
+}
+
+int display() 
+{
+   printf("\nI am in display function");
+}
+
+Output:
+
+I am in display function
+I am in main function
+I am in display function
+
+
+Phaneendhra Chinta
+
+phaneendhra.chinta@thundersoft.com 
